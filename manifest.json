@@ -1,0 +1,25 @@
+{
+  "name": "NFTrans",
+  "description": "Trans your NFTs via the web",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/public/images/nftrans@16.png",
+      "32": "/public/images/nftrans@32.png",
+      "48": "/public/images/nftrans@48.png",
+      "128": "/public/images/nftrans@128.png"
+    }
+  },
+  "icons": {
+    "16": "/public/images/nftrans@16.png",
+    "32": "/public/images/nftrans@32.png",
+    "48": "/public/images/nftrans@48.png",
+    "128": "/public/images/nftrans@128.png"
+  }
+}
