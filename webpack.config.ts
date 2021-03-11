@@ -9,11 +9,16 @@ const POPUP = `<div id='popup'></div>`;
 const config: webpack.Configuration = {
   entry: {
     background: "./src/background.ts",
-    popup: "./src/popup.ts",
+    popup: "./src/popup.tsx",
+    reload: "./src/reload.ts",
   },
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "extension"),
+  },
+  devServer: {
+    port: 9292,
+    writeToDisk: true,
   },
   module: {
     rules: [
