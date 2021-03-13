@@ -14,10 +14,9 @@ const config: webpack.Configuration = {
   },
   output: {
     filename: "bundle.[name].js",
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "extension"),
   },
   devServer: {
-    port: 9292,
     writeToDisk: true,
   },
   module: {
