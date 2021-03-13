@@ -1,3 +1,4 @@
+import "@design/theme";
 import Popup from "./Popup.svelte";
 
 export default new Popup({

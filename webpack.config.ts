@@ -40,6 +40,10 @@ const config: webpack.Configuration = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+      },
     ],
   },
   plugins: [
@@ -52,6 +56,10 @@ const config: webpack.Configuration = {
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@nftrans": path.resolve(__dirname, "src/"),
+      "@design": path.resolve(__dirname, "design/"),
+    },
   },
 };
 
