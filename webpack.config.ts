@@ -1,20 +1,20 @@
-import * as path from "path";
-import * as webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
+import "webpack-dev-server";
 
-// popup.html
-const POPUP = `<div id='popup'></div>`;
+import type webpack from "webpack";
+
+import path from "path";
+import CopyPlugin from "copy-webpack-plugin";
+import AutoPreprocess from "svelte-preprocess";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const config: webpack.Configuration = {
   entry: {
     background: "./src/background.ts",
-    popup: "./src/popup.tsx",
-    reload: "./src/reload.ts",
+    popup: "./src/popup/index.ts",
   },
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "extension"),
+    filename: "bundle.[name].js",
+    path: path.resolve(__dirname, "public"),
   },
   devServer: {
     port: 9292,
@@ -23,6 +23,20 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(html|svelte)$/,
+        use: {
+          loader: "svelte-loader",
+          options: {
+            preprocess: AutoPreprocess(),
+            emitCss: true,
+          },
+        },
+      },
+      {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
@@ -30,13 +44,11 @@ const config: webpack.Configuration = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: "popup.html",
-      templateContent: POPUP,
-      chunks: ["popup"],
-    }),
     new CopyPlugin({
-      patterns: ["manifest.json", { from: "public", to: "public" }],
+      patterns: ["manifest.json"],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "bundle.[name].css",
     }),
   ],
   resolve: {

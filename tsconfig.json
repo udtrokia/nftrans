@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "types": ["chrome", "svelte"],
     "lib": ["dom"],
-    "outDir": "./extension/",
+    "outDir": "./public/",
     "noImplicitAny": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es2017",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
@@ -12,5 +13,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "includes": ["src/**/*"]
+  "includes": ["src/**/*"],
+  "extends": "@tsconfig/svelte/tsconfig.json"
 }
